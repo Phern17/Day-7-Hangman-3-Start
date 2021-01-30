@@ -20,22 +20,29 @@ while not guessedRight and word_length != 0:
   guess = input("Guess a letter: ").lower()
   correct_guess = False
   #Check guessed letter
-  for position in range(word_length):
-      letter = chosen_word[position]
-      #print(f"Current position: {position}\n Current letter: {letter}\n Guessed letter: {guess}")
-      if letter == guess and letter not in display:
-          display[position] = letter
-          correct_guess = True
+  if guess not in display:
+    for position in range(word_length):
+        letter = chosen_word[position]
+        #print(f"Current position: {position}\n Current letter: {letter}\n Guessed letter: {guess}")
+        if letter == guess:
+            display[position] = letter
+            correct_guess = True
 
-  if correct_guess:
-    print(display)
-    if "_" not in display:
-      print('You won.')
-      guessedRight = True
+    if correct_guess:
+      print(display)
+      if "_" not in display:
+        print('You won.')
+        guessedRight = True
+
+    else:
+      word_length -= 1
+      print(f"Wrong, {word_length} attempt(s) left")
+      if (word_length == 0):
+        print("YOU LOSER")
 
   else:
-    word_length -= 1
-    print(f"Wrong, {word_length} attempt(s) left")
+    print("The character is already in.")
+      
 
-if not guessedRight:
-  print("YOU LOSER")
+
+  
